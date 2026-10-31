@@ -112,34 +112,53 @@ avatarFlip.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.pre
 
 function downloadPortfolioCV(){
   const items=[["heading","ALFRED TAN TIN ZHOU"],["small","Kuala Lumpur, Malaysia | +60 12-478 7753 | tan4787763@gmail.com"],["small","github.com/Alfred7753"],["section","Professional Summary"],["text","Computer Science (Cyber Security) graduate with hands-on experience across software systems, cybersecurity, cloud infrastructure, networking and IT operations. Interested in understanding requirements, assessing risks and delivering reliable technical solutions."],["section","Education"],["text","BSc (Hons) Computer Science (Cyber Security) | Asia Pacific University (APU) | 2026 | CGPA 3.21/4.00"],["text","Diploma in ICT (Software Engineering) | Asia Pacific University (APU) | 2024 | CGPA 3.01/4.00"],["section","Professional Experience"],["sub","Freelance | Client Systems and Automation Projects"],["bullet","Collaborated on the DWMLight / ANVA multilingual website and CMS, supporting frontend, backend integration, testing, SEO and deployment. Built a Python QR Code Attendance and Payroll Management System."],["sub","Full-Stack Developer Intern | TBRO's Ventures Sdn. Bhd. | Jul 2025 - Nov 2025"],["bullet","Maintained business applications, fixed defects, designed reusable components and supported automated e-Invoicing functionality using React, TypeScript and Docker."],["sub","Mobile Application Developer Intern | Alva Productions | May 2024 - Jun 2024"],["bullet","Improved Flutter and Dart app functionality, resolved navigation and data issues and refactored legacy Call Sheet code for phone and tablet layouts."],["section","Selected Projects"],["sub","AI-Assisted Zero Trust Network Access (ZTNA) Security Framework"],["bullet","Developed security assessment, mitigation planning, selected middleware security controls and verification. Covered MFA, RBAC, IP restrictions, rate limits, session protection and OWASP/CWE."],["sub","AWS Cloud Infrastructure and High Availability"],["bullet","Deployed an employee directory with EC2, ALB, Auto Scaling, Multi-AZ, DynamoDB, S3 and IAM; tested integration, availability and security settings."],["sub","Log4Shell Exploitation, Threat Detection and Incident Response"],["bullet","Simulated Log4Shell in an isolated lab, correlated network and host evidence, created Suricata detection rules and planned incident response."],["sub","Web Application Security Assessment and Hardening"],["bullet","Analyzed SQL injection, insecure passwords and IDOR in a PHP/MySQL courier application; implemented prepared statements, hashing and authorization checks."],["section","Technical Skills"],["text","Languages: Python, Java, JavaScript, TypeScript, C++, PHP, SQL, HTML, CSS"],["text","Cloud and Operations: AWS EC2, S3, IAM, ALB, Auto Scaling, DynamoDB, Docker, Linux, Git"],["text","Security and Networking: Zero Trust, RBAC, MFA, VAPT, OWASP, Wireshark, Suricata, Wazuh, TCP/IP, DNS, NAT"],["text","Software and Data: React, Next.js, Node.js, Express.js, REST APIs, MySQL, PostgreSQL, MongoDB"]];
-  let y=756;const commands=[];
-  function esc(v){return String(v).replace(/[^\\x20-\\x7e]/g,"-").replace(/\\\\/g,"\\\\\\\\").replace(/\\(/g,"\\\\(").replace(/\\)/g,"\\\\)")}
-  function textLine(v,font,size,step,color){commands.push(color+" rg BT /"+font+" "+size+" Tf 1 0 0 1 39 "+y.toFixed(1)+" Tm ("+esc(v)+") Tj ET");y-=step}
-  function wrap(v,limit){let current="",parts=[];for(const w of v.split(/\\s+/)){if((current?current.length+1:0)+w.length>limit){parts.push(current);current=w}else current+=(current?" ":"")+w}if(current)parts.push(current);return parts}
-  for(const [kind,value] of items){
-    if(kind==="heading")textLine(value,"F2",18,26,"0.09 0.18 0.26");
-    else if(kind==="small")textLine(value,"F1",8.8,13,"0.24 0.29 0.34");
-    else if(kind==="section"){y-=6;textLine(value.toUpperCase(),"F2",10,16,"0.12 0.32 0.59")}
-    else if(kind==="sub")textLine(value,"F2",9,12,"0.09 0.18 0.26");
-    else{const bullet=kind==="bullet";for(const [idx,line] of wrap(value,bullet?110:117).entries())textLine((bullet?(idx===0?"- ":"  "):"")+line,"F1",8.5,12.2,"0.19 0.23 0.27")}
+  const commands=[];
+  let y=756;
+  function esc(value){
+    return String(value).replace(/[^\x20-\x7e]/g,"-").replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)");
   }
-  if(y<24){alert("CV page is too full to export.");return}
-  const stream=commands.join("\\n")+"\\n";
+  function wrap(value,limit){
+    const result=[]; let current="";
+    for(const word of String(value).split(/\s+/)){
+      if(current && current.length+word.length+1>limit){result.push(current);current=word}
+      else current+=(current?" ":"")+word;
+    }
+    if(current)result.push(current);
+    return result;
+  }
+  function line(value,font,size,step,color){
+    commands.push(color+" rg BT /"+font+" "+size+" Tf 1 0 0 1 39 "+y.toFixed(1)+" Tm ("+esc(value)+") Tj ET");
+    y-=step;
+  }
+  for(const [kind,value] of items){
+    if(kind==="heading")line(value,"F2",18,26,"0.09 0.18 0.26");
+    else if(kind==="small")line(value,"F1",8.8,13,"0.24 0.29 0.34");
+    else if(kind==="section"){y-=5;line(value.toUpperCase(),"F2",10,16,"0.12 0.32 0.59")}
+    else if(kind==="sub")line(value,"F2",9,12,"0.09 0.18 0.26");
+    else for(const [index,text] of wrap(value,kind==="bullet"?105:116).entries()){
+      line((kind==="bullet"?(index===0?"- ":"  "):"")+text,"F1",8.2,12,"0.19 0.23 0.27");
+    }
+  }
+  if(y<20){alert("The generated CV is too long for one page.");return}
+  const stream=commands.join("\n")+"\n";
   const objects=[
     "<< /Type /Catalog /Pages 2 0 R >>",
     "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
     "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>",
     "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
     "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>",
-    "<< /Length "+stream.length+" >>\\nstream\\n"+stream+"endstream"
+    "<< /Length "+stream.length+" >>\nstream\n"+stream+"endstream"
   ];
-  let pdf="%PDF-1.4\\n";const offsets=[0];
-  for(let i=0;i<objects.length;i++){offsets.push(pdf.length);pdf+=(i+1)+" 0 obj\\n"+objects[i]+"\\nendobj\\n"}
-  const xref=pdf.length;pdf+="xref\\n0 "+(objects.length+1)+"\\n0000000000 65535 f \\n";
-  for(let i=1;i<offsets.length;i++)pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \\n";
-  pdf+="trailer\\n<< /Size "+(objects.length+1)+" /Root 1 0 R >>\\nstartxref\\n"+xref+"\\n%%EOF\\n";
+  let pdf="%PDF-1.4\n";const offsets=[0];
+  for(let i=0;i<objects.length;i++){offsets.push(pdf.length);pdf+=(i+1)+" 0 obj\n"+objects[i]+"\nendobj\n"}
+  const xref=pdf.length;
+  pdf+="xref\n0 "+(objects.length+1)+"\n0000000000 65535 f \n";
+  for(let i=1;i<offsets.length;i++)pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \n";
+  pdf+="trailer\n<< /Size "+(objects.length+1)+" /Root 1 0 R >>\nstartxref\n"+xref+"\n%%EOF\n";
   const url=URL.createObjectURL(new Blob([pdf],{type:"application/pdf"}));
-  const link=document.createElement("a");link.href=url;link.download="Alfred_Tan_Tin_Zhou_CV.pdf";document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+  const link=document.createElement("a");
+  link.href=url;link.download="Alfred_Tan_Tin_Zhou_CV.pdf";document.body.appendChild(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),30000);
 }
 document.querySelectorAll("[data-download-cv]").forEach(b=>b.addEventListener("click",downloadPortfolioCV));
 
