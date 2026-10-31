@@ -1,5 +1,5 @@
 
-<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Alfred Tan Tin Zhou — cybersecurity, cloud infrastructure, systems and IT operations portfolio."><title>Alfred Tan Tin Zhou | Systems • Security • Cloud</title><style>
+<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Alfred Tan Tin Zhou — cybersecurity, cloud infrastructure, systems and IT operations portfolio."><title>Alfred Tan's Portfolio</title><style>
 :root{color-scheme:light;--bg:#f8f9f6;--panel:#fff;--ink:#14212a;--muted:#52616b;--line:#dfe6e4;--blue:#315ea8;--tint:#e7f0ea;--peach:#f3e9de;--shadow:0 20px 55px #16324b0a}
 html[data-theme=dark]{color-scheme:dark;--bg:#101923;--panel:#182531;--ink:#edf4f4;--muted:#b1c0c7;--line:#324251;--blue:#86b6ff;--tint:#233a3b;--peach:#3b3430;--shadow:0 20px 55px #0003}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:94px}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.75 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
@@ -69,8 +69,39 @@ header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--
 @media(hover:hover) and (pointer:fine){.hero-flip:hover .hero-front{opacity:0}.hero-flip:hover .hero-back{opacity:1}}
 .hero-flip.is-flipped .hero-front{opacity:0}.hero-flip.is-flipped .hero-back{opacity:1}
 @media(max-width:700px){.hero-flip,.hero-side{border-radius:30px}}
-.inquiry-submit{justify-self:center!important;margin:0 auto!important;border:0!important;min-width:190px;text-align:center}.inquiry>.note{text-align:center}</style></head><body>
-<header><nav class="wrap nav"><a class="brand" href="#top">Alfred<span><b>.</b></span></a><div class="links"><a href="#about" data-k="navAbout">About</a><a href="#interests" data-k="navRoles">Career interests</a><a href="#projects" data-k="navProjects">Projects</a><a href="#toolkit" data-k="navTools">Toolkit</a><a href="#journey" data-k="navJourney">Journey</a><a href="#education" data-k="navEdu">Education</a><a href="#contact" data-k="navContact">Contact</a></div><div class="language-switch" id="language" data-active="en" role="group" aria-label="Choose website language / 选择语言"><span class="language-thumb" aria-hidden="true"></span><button type="button" class="language-option" data-lang="en" aria-pressed="true">EN</button><button type="button" class="language-option" data-lang="zh" aria-pressed="false">中文</button></div><button class="switch" id="theme" aria-label="Toggle color theme">☾</button></nav></header>
+.inquiry-submit{justify-self:center!important;margin:0 auto!important;border:0!important;min-width:190px;text-align:center}.inquiry>.note{text-align:center}
+/* Accurate round close control, regardless of viewport and font sizing */
+#closeModal{display:grid!important;place-items:center!important;flex:0 0 42px!important;inline-size:42px!important;block-size:42px!important;min-inline-size:42px!important;min-block-size:42px!important;padding:0!important;margin:0!important;border-radius:50%!important;line-height:1!important;aspect-ratio:1/1;background:var(--bg);color:var(--ink);font-size:25px;border:1px solid var(--line)}
+.modal-head>div{flex:1;min-width:0}.modal-head h2{overflow-wrap:anywhere}
+.menu-toggle{display:none;border:1px solid var(--line);color:var(--ink);background:var(--panel);border-radius:12px;inline-size:40px;block-size:40px;font-size:21px;line-height:1;align-items:center;justify-content:center;cursor:pointer}
+@media(max-width:920px){
+  .nav{flex-wrap:wrap;position:relative;column-gap:10px;row-gap:0;padding-block:10px;min-height:65px}
+  .brand{font-size:21px;letter-spacing:-.9px;flex:1;min-width:0}
+  .menu-toggle{display:inline-flex;order:2}
+  .language-switch{order:3;width:112px}
+  .switch#theme{order:4;min-width:40px;padding:7px}
+  .links{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:0 0 18px 18px;box-shadow:var(--shadow);padding:10px 16px;z-index:30}
+  .links.is-open{display:flex!important}
+  .links a{display:block;padding:10px 5px;border-bottom:1px solid var(--line);font-size:14px}
+  .links a:last-child{border-bottom:0}
+}
+@media(max-width:500px){
+  .brand{font-size:18px}
+  .nav{gap:6px}
+  .language-switch{width:102px}
+  .language-option{font-size:11px;padding:6px 2px}
+  .hero h1{font-size:clamp(40px,10vw,61px)}
+  .hero-mark{min-height:320px;height:320px}
+  .feature-panels{grid-template-columns:1fr}
+  .inquiry-head h2{font-size:clamp(31px,9vw,48px);overflow-wrap:anywhere}
+  .modal{padding:18px;max-height:88vh}
+  .modal-head{gap:12px}
+  #closeModal{flex-basis:38px!important;inline-size:38px!important;block-size:38px!important;min-inline-size:38px!important;min-block-size:38px!important}
+  .contact-links a{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.hero-flip-inner,.language-thumb{transition-duration:0s!important}}
+</style></head><body>
+<header><nav class="wrap nav"><a class="brand" href="#top">Alfred Tan<span><b>.</b></span></a><div class="links" id="siteNav"><a href="#about" data-k="navAbout">About</a><a href="#interests" data-k="navRoles">Career interests</a><a href="#projects" data-k="navProjects">Projects</a><a href="#toolkit" data-k="navTools">Toolkit</a><a href="#journey" data-k="navJourney">Journey</a><a href="#education" data-k="navEdu">Education</a><a href="#contact" data-k="navContact">Contact</a></div><button type="button" class="menu-toggle" id="mobileMenuToggle" aria-controls="siteNav" aria-expanded="false" aria-label="Toggle navigation">☰</button><div class="language-switch" id="language" data-active="en" role="group" aria-label="Choose website language / 选择语言"><span class="language-thumb" aria-hidden="true"></span><button type="button" class="language-option" data-lang="en" aria-pressed="true">EN</button><button type="button" class="language-option" data-lang="zh" aria-pressed="false">中文</button></div><button class="switch" id="theme" aria-label="Toggle color theme">☾</button></nav></header>
 <main id="top"><div class="wrap"><section class="hero"><div><div class="availability" data-k="availability">Open to work opportunities & collaborations</div><div class="eyebrow" data-k="heroEyebrow">CYBERSECURITY / CLOUD / SYSTEMS</div><h1 data-html="heroHeading">Understanding the <em>whole system.</em></h1><p class="lede" data-k="heroIntro">Hi, I'm Alfred. My experience across software, cybersecurity, cloud infrastructure, networking and IT operations has shaped a broader view of how systems are designed, secured, deployed and maintained.</p><div class="hero-actions"><a class="cta" href="#projects" data-k="explore">Explore projects ↗</a><a class="cta cta-outline" href="#contact" data-k="heroContact">Contact me ↗</a><a class="cta cta-quiet" href="./Alfred_Tan_Tin_Zhou_Resume.pdf" download="Alfred_Tan_Tin_Zhou_Resume.pdf" data-k="downloadCV">Download CV ↓</a></div><p class="note">Bukit Jalil · Kuala Lumpur, Malaysia</p></div><div class="hero-mark hero-flip" id="avatarFlip" tabindex="0" role="button" aria-label="Hover or press to reveal Alfred’s portrait" aria-pressed="false"><div class="hero-flip-inner"><div class="hero-side hero-front"><div class="hero-glow"></div><div class="hero-orbit hero-orbit-1"></div><div class="hero-orbit hero-orbit-2"></div><div class="hero-orbit hero-orbit-3"></div><div class="hero-core">AT.</div><div class="hero-badge hero-badge-top" data-k="heroBadgeSecurity">SECURITY</div><div class="hero-badge hero-badge-right" data-k="heroBadgeCloud">CLOUD · SYSTEMS</div><div class="hero-coordinate">03—06 / AT</div></div><div class="hero-side hero-back"><img src="./avatar.webp" width="900" height="1350" alt="Portrait of Alfred Tan Tin Zhou" loading="eager" decoding="async"></div></div></div></section></div>
 <section id="about" class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">01 / ABOUT</div><h2 data-k="aboutHeading">About me.</h2></div><p data-k="aboutHint">An end-to-end perspective across connected technologies.</p></div><div class="about"><div class="card"><p data-k="about1">I am a Computer Science (Cyber Security) graduate with experience spanning software systems, cloud architecture, network technologies and IT operations.</p><p data-k="about2">Internships, freelance client work and academic projects have given me practical exposure across the system lifecycle—from implementation and integration through security assessment, deployment and maintenance.</p><p data-k="about3">I am especially interested in cybersecurity, cloud infrastructure, systems engineering and operations. I approach challenges analytically, value reliable solutions and continue learning across disciplines.</p></div><div class="card focus"><div class="eyebrow" data-k="focusLabel">MY FOCUS</div><h3 data-k="focusTitle">Security. Infrastructure. Systems.</h3><p data-k="focusDesc">Understanding how technologies connect, where risks emerge, and what keeps systems dependable.</p><div class="focus-extra"><div class="eyebrow" data-k="focusExtraLabel">WHAT I BRING</div><p data-k="focusExtraDesc">I work to understand requirements and expectations, then turn them into practical solutions that meet the intended goals.</p></div></div></div></div></section>
 <section id="interests" class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">02 / CAREER INTERESTS</div><h2 data-k="rolesHeading">Where I hope to contribute.</h2></div><p data-k="rolesHint">Opportunities that combine technical understanding, practical problem solving and reliable systems.</p></div><div class="role-grid" id="rolesGrid"></div><p class="note role-note" data-k="rolesNote">Also open to other related roles.</p></div></section>
@@ -111,5 +142,10 @@ avatarFlip.addEventListener("click",()=>{if(window.matchMedia("(hover: none)").m
 avatarFlip.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();setAvatarFlipped(!avatarFlip.classList.contains("is-flipped"))}else if(e.key==="Escape"){setAvatarFlipped(false)}});
 
 
+const mobileMenuToggle=document.getElementById("mobileMenuToggle");
+const siteNav=document.getElementById("siteNav");
+mobileMenuToggle.addEventListener("click",()=>{const open=siteNav.classList.toggle("is-open");mobileMenuToggle.setAttribute("aria-expanded",String(open));mobileMenuToggle.textContent=open?"×":"☰"});
+siteNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{siteNav.classList.remove("is-open");mobileMenuToggle.setAttribute("aria-expanded","false");mobileMenuToggle.textContent="☰"}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){siteNav.classList.remove("is-open");mobileMenuToggle.setAttribute("aria-expanded","false");mobileMenuToggle.textContent="☰"}});
 document.getElementById("contactForm").addEventListener("submit",e=>{e.preventDefault();const form=new FormData(e.currentTarget),subject="Portfolio opportunity from "+form.get("name"),body="Name: "+form.get("name")+"\nCompany email: "+form.get("email")+"\n\nJob description / message:\n"+form.get("message");window.location.href="mailto:tan4787763@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body)});paint();
 </script></body></html>
